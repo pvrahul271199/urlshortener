@@ -1,0 +1,145 @@
+{
+  "info": {
+    "_postman_id": "37099ba5-27f4-411d-ad9e-3a85c1e3ec82",
+    "name": "url-shortener",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15517297"
+  },
+  "item": [
+    {
+      "name": "Create short url without alias and expiry",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"originalUrl\": \"https://www.google.com\",\n    \"customAlias\": null,\n    \"expiresAt\": null\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/shorten",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "shorten"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create short url with alias and without expiry",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"originalUrl\": \"https://www.google.com\",\n    \"customAlias\": \"mylink\",\n    \"expiresAt\": null\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/shorten",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "shorten"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create short url with alias and with expiry",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"originalUrl\": \"https://www.google.com\",\n    \"customAlias\": \"mylink\",\n    \"expiresAt\": \"2026-04-11T10:00:00+05:30\"\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/shorten",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "shorten"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Redirect url",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "GET stats",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE shorten url",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
