@@ -9,7 +9,7 @@ import com.sayone.urlshortener.exception.UrlShortenerException;
 import com.sayone.urlshortener.repository.UrlRepository;
 import com.sayone.urlshortener.util.Base62Encoder;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +22,11 @@ public class UrlService {
     private final Base62Encoder encoder;
     private final RedisCacheService redisCacheService;
 
-    @Value("${app.base-url}") String baseUrl;
-    @Value("${app.default-ttl-days}") int defaultTtl;
+    @Value("${app.base-url}")
+    private String baseUrl;
+
+    @Value("${app.default-ttl-days}")
+    private int defaultTtl;
 
     public ShortenResponse shortenUrl(ShortenRequest request){
         Url url = new Url();
@@ -36,7 +39,7 @@ public class UrlService {
         // if custom alias present
         if(request.getCustomAlias() != null){
             if(urlRepository.findByShortCode(request.getCustomAlias()).isPresent()){
-                throw new UrlShortenerException("Alias " + request.getCustomAlias() + "is already taken");
+                throw new UrlShortenerException("Alias " + request.getCustomAlias() + " is already taken");
             }
             url.setShortCode(request.getCustomAlias());
         }

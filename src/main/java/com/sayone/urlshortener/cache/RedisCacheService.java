@@ -2,6 +2,7 @@ package com.sayone.urlshortener.cache;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
@@ -11,7 +12,8 @@ import java.time.temporal.ChronoUnit;
 @RequiredArgsConstructor
 public class RedisCacheService {
 
-    private final RedisTemplate<String, String> redis;
+//    private final RedisTemplate<String, String> redis;
+    private final StringRedisTemplate redis;
 
     public void put(String shortCode, String originalUrl, ZonedDateTime expiry){
         try{
@@ -27,6 +29,7 @@ public class RedisCacheService {
             return redis.opsForValue().get(shortCode);
         }  catch(Exception e){
             System.out.println("Redis Cache Error" + e.getMessage());
+            return null;
         }
     }
 

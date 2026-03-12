@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 public class UrlController {
 
@@ -25,8 +27,10 @@ public class UrlController {
 
     @GetMapping("/{shortCode}")
     public ResponseEntity<Void> redirect(@PathVariable String shortCode){
-        String originalUrl = urlService.resolveUrl(shortCode);
-
+        return ResponseEntity
+                .status(302)
+                .location(URI.create(urlService.resolveUrl(shortCode).trim()))
+                .build();
     }
 
     @GetMapping("/api/stats/{shortCode}")
@@ -39,5 +43,4 @@ public class UrlController {
         urlService.deleteUrl(shortCode);
         return ResponseEntity.noContent().build();
     }
-
 }
