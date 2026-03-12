@@ -12,7 +12,6 @@ import java.time.temporal.ChronoUnit;
 @RequiredArgsConstructor
 public class RedisCacheService {
 
-//    private final RedisTemplate<String, String> redis;
     private final StringRedisTemplate redis;
 
     public void put(String shortCode, String originalUrl, ZonedDateTime expiry){
@@ -33,6 +32,7 @@ public class RedisCacheService {
         }
     }
 
+    //remove from redis
     public void evict(String shortCode){
         try{
             redis.delete(shortCode);

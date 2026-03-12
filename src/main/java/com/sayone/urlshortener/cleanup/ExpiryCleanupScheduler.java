@@ -17,7 +17,8 @@ public class ExpiryCleanupScheduler {
         this.urlRepository = urlRepository;
     }
 
-    @Scheduled(cron = "0 0 * * *")
+    //repeating at 12 AM daily
+    @Scheduled(cron = "0 0 0 * * *")
     public void cleanExpiredUrls(){
         urlRepository.deleteByExpiresAtBefore(ZonedDateTime.now());
         log.info("Removed expired short URL's");
