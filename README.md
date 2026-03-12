@@ -18,7 +18,7 @@ A Spring Boot backend service that converts long URLs into short links, with Red
 
 ### 2. Start PostgreSQL and Redis with Docker
 
-I have added docker-compose.yml file in this project
+I have added docker-compose.yml with credentials file in this project so no need to create it separately  
 
 Then run:
 
